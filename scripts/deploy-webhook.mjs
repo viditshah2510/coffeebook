@@ -26,7 +26,7 @@ function deploy() {
   console.log(`[${new Date().toISOString()}] Deploying...`);
 
   exec(
-    "git pull origin main && docker compose up -d --build",
+    "git pull origin main && docker compose down && docker compose up -d --build",
     { cwd: PROJECT_DIR, timeout: 600000 },
     (err, stdout, stderr) => {
       deploying = false;
