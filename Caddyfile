@@ -1,0 +1,3 @@
+coffeebook.thescale.in {
+	reverse_proxy localhost:3456
+}

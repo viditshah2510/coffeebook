@@ -1,0 +1,15 @@
+services:
+  coffeebook:
+    build: .
+    container_name: coffeebook
+    restart: unless-stopped
+    ports:
+      - "3456:3456"
+    volumes:
+      - ./data:/app/data          # SQLite DB + uploaded photos persist here
+    env_file:
+      - .env.local
+    environment:
+      - NODE_ENV=production
+      - PORT=3456
+      - HOSTNAME=0.0.0.0
