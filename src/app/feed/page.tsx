@@ -1,5 +1,7 @@
 import { Suspense } from "react";
 import { getEntries } from "@/server/queries/entry-queries";
+import { getRoasteries } from "@/server/queries/roastery-queries";
+import { getEstates } from "@/server/queries/estate-queries";
 import { EntryCard } from "@/components/entry-card";
 import { FilterBar } from "@/components/filter-bar";
 import { Plus } from "lucide-react";
@@ -12,17 +14,25 @@ interface FeedPageProps {
   searchParams: Promise<{
     profile?: string;
     roast?: string;
+    roastery?: string;
+    estate?: string;
     search?: string;
   }>;
 }
 
 export default async function FeedPage({ searchParams }: FeedPageProps) {
   const params = await searchParams;
-  const entries = await getEntries({
-    profileId: params.profile,
-    roastLevel: params.roast,
-    search: params.search,
-  });
+  const [entries, roasteries, estates] = await Promise.all([
+    getEntries({
+      profileId: params.profile,
+      roastLevel: params.roast,
+      roasteryId: params.roastery,
+      estateId: params.estate,
+      search: params.search,
+    }),
+    getRoasteries(),
+    getEstates(),
+  ]);
 
   return (
     <div className="min-h-dvh bg-background">
@@ -31,7 +41,7 @@ export default async function FeedPage({ searchParams }: FeedPageProps) {
       <main className="mx-auto max-w-lg px-4 pb-24 pt-4">
         {/* Filters */}
         <Suspense>
-          <FilterBar />
+          <FilterBar roasteries={roasteries} estates={estates} />
         </Suspense>
 
         {/* Entries */}

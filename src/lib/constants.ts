@@ -11,5 +11,17 @@ export const ROAST_LEVELS = [
   { value: "dark", label: "Dark", color: "#2c1810" },
 ] as const;
 
+export const BREW_TYPES = [
+  { value: "espresso", label: "Espresso" },
+  { value: "americano", label: "Americano" },
+  { value: "pour-over", label: "Pour Over" },
+  { value: "french-press", label: "French Press" },
+  { value: "aeropress", label: "AeroPress" },
+  { value: "cold-brew", label: "Cold Brew" },
+  { value: "moka-pot", label: "Moka Pot" },
+  { value: "filter", label: "Filter" },
+] as const;
+
 export type ProfileId = (typeof PROFILES)[number]["id"];
 export type RoastLevel = (typeof ROAST_LEVELS)[number]["value"];
+export type BrewType = (typeof BREW_TYPES)[number]["value"];

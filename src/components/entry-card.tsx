@@ -1,15 +1,18 @@
-import type { CoffeeEntry, EntryPhoto, Profile } from "@/lib/db/schema";
-import { ROAST_LEVELS } from "@/lib/constants";
+import type { CoffeeEntry, EntryPhoto, Profile, Roastery, Estate } from "@/lib/db/schema";
+import { ROAST_LEVELS, BREW_TYPES } from "@/lib/constants";
 import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
 
 type EntryWithRelations = CoffeeEntry & {
   profile: Profile;
   photos: EntryPhoto[];
+  roastery: Roastery | null;
+  estate: Estate | null;
 };
 
 export function EntryCard({ entry }: { entry: EntryWithRelations }) {
   const roast = ROAST_LEVELS.find((r) => r.value === entry.roastLevel);
+  const brew = BREW_TYPES.find((b) => b.value === entry.brewType);
   const flavors = entry.flavorNotes
     ?.split(",")
     .map((f) => f.trim())
@@ -36,10 +39,10 @@ export function EntryCard({ entry }: { entry: EntryWithRelations }) {
             </p>
             <p className="text-xs text-coffee-brown">{timeAgo}</p>
           </div>
-          {entry.rating && (
+          {entry.rating != null && entry.rating > 0 && (
             <div className="flex items-center gap-1 rounded-full bg-coffee-gold/15 px-2.5 py-1">
               <span className="text-xs font-medium text-coffee-gold">
-                {entry.rating}/10
+                {entry.rating.toFixed(1)}/10
               </span>
             </div>
           )}
@@ -63,21 +66,41 @@ export function EntryCard({ entry }: { entry: EntryWithRelations }) {
           </div>
         )}
 
-        {/* Coffee name + origin */}
+        {/* Coffee name + roastery + estate */}
         <h3 className="font-heading text-xl font-medium tracking-tight text-coffee-espresso">
           {entry.coffeeName}
         </h3>
-        {entry.origin && (
-          <p className="mt-0.5 text-sm text-coffee-brown">{entry.origin}</p>
-        )}
-        {entry.location && (
-          <p className="mt-0.5 text-xs text-coffee-brown/70">
-            {entry.location}
+        {entry.roastery && (
+          <p className="mt-0.5 text-sm text-coffee-brown">
+            {entry.roastery.name}
           </p>
         )}
+        {entry.estate ? (
+          <p className="mt-0.5 text-xs text-coffee-brown/70">
+            {entry.estate.name}
+            {entry.estate.location && ` — ${entry.estate.location}`}
+            {entry.estate.country && `, ${entry.estate.country}`}
+          </p>
+        ) : (
+          <>
+            {entry.origin && (
+              <p className="mt-0.5 text-sm text-coffee-brown">{entry.origin}</p>
+            )}
+            {entry.location && (
+              <p className="mt-0.5 text-xs text-coffee-brown/70">
+                {entry.location}
+              </p>
+            )}
+          </>
+        )}
 
-        {/* Tags row: roast + flavors */}
+        {/* Tags row: brew type + roast + flavors */}
         <div className="mt-3 flex flex-wrap gap-1.5">
+          {brew && (
+            <span className="inline-flex items-center rounded-full bg-coffee-teal px-2.5 py-1 text-xs font-medium text-white">
+              {brew.label}
+            </span>
+          )}
           {roast && (
             <span
               className="inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-xs font-medium text-white"
@@ -97,16 +120,19 @@ export function EntryCard({ entry }: { entry: EntryWithRelations }) {
         </div>
 
         {/* Brew params (compact) */}
-        {(entry.coffeeWeight || entry.brewTime || entry.grindSize) && (
+        {(entry.coffeeWeight || entry.shotWeight || entry.brewTime || entry.grindSize) && (
           <div className="mt-3 flex flex-wrap gap-3 text-xs text-coffee-brown/80">
             {entry.coffeeWeight && (
-              <span>{entry.coffeeWeight}g</span>
+              <span>{entry.coffeeWeight}g in</span>
+            )}
+            {entry.shotWeight && (
+              <span>{entry.shotWeight}g out</span>
             )}
             {entry.brewTime && (
               <span>{entry.brewTime}s</span>
             )}
             {entry.grindSize && (
-              <span>{entry.grindSize}</span>
+              <span>grind {entry.grindSize}</span>
             )}
           </div>
         )}

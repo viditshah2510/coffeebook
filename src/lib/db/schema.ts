@@ -11,20 +11,45 @@ export const profiles = sqliteTable("profiles", {
     .default(sql`(datetime('now'))`),
 });
 
+export const roasteries = sqliteTable("roasteries", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  name: text("name").notNull(),
+  createdAt: text("created_at")
+    .notNull()
+    .default(sql`(datetime('now'))`),
+});
+
+export const estates = sqliteTable("estates", {
+  id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
+  name: text("name").notNull(),
+  location: text("location"),
+  country: text("country"),
+  masl: integer("masl"),
+  createdAt: text("created_at")
+    .notNull()
+    .default(sql`(datetime('now'))`),
+});
+
 export const coffeeEntries = sqliteTable("coffee_entries", {
   id: text("id").primaryKey().$defaultFn(() => crypto.randomUUID()),
   profileId: text("profile_id")
     .notNull()
     .references(() => profiles.id),
+  roasteryId: text("roastery_id").references(() => roasteries.id),
+  estateId: text("estate_id").references(() => estates.id),
   coffeeName: text("coffee_name").notNull(),
   origin: text("origin"),
   location: text("location"),
   roastLevel: text("roast_level"),
+  brewType: text("brew_type"),
   flavorNotes: text("flavor_notes"),
   coffeeWeight: real("coffee_weight"),
+  shotWeight: real("shot_weight"),
   brewTime: integer("brew_time"),
   grindSize: text("grind_size"),
-  rating: integer("rating"),
+  grinderType: text("grinder_type"),
+  rating: real("rating"),
+  tasteNotes: text("taste_notes"),
   notes: text("notes"),
   createdAt: text("created_at")
     .notNull()
@@ -51,3 +76,7 @@ export type Profile = typeof profiles.$inferSelect;
 export type CoffeeEntry = typeof coffeeEntries.$inferSelect;
 export type EntryPhoto = typeof entryPhotos.$inferSelect;
 export type NewCoffeeEntry = typeof coffeeEntries.$inferInsert;
+export type Roastery = typeof roasteries.$inferSelect;
+export type NewRoastery = typeof roasteries.$inferInsert;
+export type Estate = typeof estates.$inferSelect;
+export type NewEstate = typeof estates.$inferInsert;

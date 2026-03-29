@@ -1,6 +1,8 @@
 export const dynamic = "force-dynamic";
 
 import { getEntryById } from "@/server/queries/entry-queries";
+import { getRoasteries } from "@/server/queries/roastery-queries";
+import { getEstates } from "@/server/queries/estate-queries";
 import { notFound } from "next/navigation";
 import { EntryForm } from "@/components/entry-form";
 import { HeaderBar } from "@/components/header-bar";
@@ -13,7 +15,11 @@ interface EditEntryPageProps {
 
 export default async function EditEntryPage({ params }: EditEntryPageProps) {
   const { id } = await params;
-  const entry = await getEntryById(id);
+  const [entry, roasteries, estates] = await Promise.all([
+    getEntryById(id),
+    getRoasteries(),
+    getEstates(),
+  ]);
   if (!entry) notFound();
 
   return (
@@ -33,7 +39,7 @@ export default async function EditEntryPage({ params }: EditEntryPageProps) {
           Edit Entry
         </h1>
 
-        <EntryForm entry={entry} />
+        <EntryForm entry={entry} roasteries={roasteries} estates={estates} />
       </main>
     </div>
   );
