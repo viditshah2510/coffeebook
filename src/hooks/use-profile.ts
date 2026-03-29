@@ -38,6 +38,7 @@ export function useProfile() {
 
   const clearProfile = useCallback(() => {
     localStorage.removeItem(STORAGE_KEY);
+    sessionStorage.removeItem("coffeebook-auth");
     document.cookie = "coffeebook-profile=;path=/;max-age=0";
     listeners.forEach((l) => l());
   }, []);

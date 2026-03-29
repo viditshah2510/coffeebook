@@ -50,6 +50,7 @@ export default async function EntryDetailPage({ params }: EntryDetailPageProps) 
           <div className="flex items-center gap-2">
             <Link
               href={`/entry/${entry.id}/edit`}
+              data-testid="edit-entry"
               className="flex h-8 w-8 items-center justify-center rounded-full text-coffee-brown hover:bg-coffee-cream"
             >
               <Edit className="h-4 w-4" />

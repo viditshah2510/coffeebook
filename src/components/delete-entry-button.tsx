@@ -23,6 +23,7 @@ export function DeleteEntryButton({ id }: { id: string }) {
     <button
       onClick={handleDelete}
       disabled={isPending}
+      data-testid="delete-entry"
       className="flex h-8 w-8 items-center justify-center rounded-full text-red-400 hover:bg-red-50 hover:text-red-600 disabled:opacity-50"
     >
       <Trash2 className="h-4 w-4" />

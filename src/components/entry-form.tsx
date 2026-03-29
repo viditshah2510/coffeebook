@@ -253,7 +253,11 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
                 onValueChange={(val) => setRoasteryId(val as string)}
               >
                 <SelectTrigger className="w-full rounded-xl border-coffee-brown/20 bg-white text-coffee-espresso">
-                  <SelectValue placeholder="Select roastery" />
+                  <SelectValue placeholder="Select roastery">
+                    {roasteryId
+                      ? roasteries.find((r) => r.id === roasteryId)?.name ?? "Select roastery"
+                      : undefined}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {roasteries.map((r) => (
@@ -285,7 +289,14 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
                 onValueChange={(val) => setEstateId(val as string)}
               >
                 <SelectTrigger className="w-full rounded-xl border-coffee-brown/20 bg-white text-coffee-espresso">
-                  <SelectValue placeholder="Select estate" />
+                  <SelectValue placeholder="Select estate">
+                    {estateId
+                      ? (() => {
+                          const e = estates.find((e) => e.id === estateId);
+                          return e ? `${e.name}${e.location ? ` — ${e.location}` : ""}` : "Select estate";
+                        })()
+                      : undefined}
+                  </SelectValue>
                 </SelectTrigger>
                 <SelectContent>
                   {estates.map((e) => (

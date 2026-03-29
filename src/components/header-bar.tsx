@@ -21,6 +21,7 @@ export function HeaderBar() {
             <div className="relative">
               <button
                 onClick={() => setMenuOpen(!menuOpen)}
+                data-testid="nav-menu"
                 className="flex h-7 w-7 items-center justify-center rounded-full text-coffee-brown/50 hover:bg-coffee-cream hover:text-coffee-brown"
               >
                 <Menu className="h-3.5 w-3.5" />
@@ -69,6 +70,7 @@ export function HeaderBar() {
                 clearProfile();
                 window.location.href = "/";
               }}
+              data-testid="logout-button"
               className="flex h-7 w-7 items-center justify-center rounded-full text-coffee-brown/50 hover:bg-coffee-cream hover:text-coffee-brown"
             >
               <LogOut className="h-3.5 w-3.5" />
