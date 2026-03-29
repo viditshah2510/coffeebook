@@ -16,9 +16,13 @@ export async function GET(
 
   try {
     const buffer = await readFile(filepath);
+    let contentType = "image/webp";
+    if (buffer[0] === 0xFF && buffer[1] === 0xD8) contentType = "image/jpeg";
+    else if (buffer[0] === 0x89 && buffer[1] === 0x50) contentType = "image/png";
+
     return new NextResponse(buffer, {
       headers: {
-        "Content-Type": "image/webp",
+        "Content-Type": contentType,
         "Cache-Control": "public, max-age=31536000, immutable",
       },
     });

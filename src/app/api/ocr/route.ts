@@ -22,6 +22,12 @@ export async function POST(req: NextRequest) {
       const filepath = path.join(process.cwd(), "data", "uploads", filename);
       const buffer = await readFile(filepath);
       base64 = buffer.toString("base64");
+
+      // Detect actual media type from file magic bytes
+      if (buffer[0] === 0xFF && buffer[1] === 0xD8) mediaType = "image/jpeg";
+      else if (buffer[0] === 0x89 && buffer[1] === 0x50) mediaType = "image/png";
+      else if (buffer[0] === 0x47 && buffer[1] === 0x49) mediaType = "image/gif";
+      // else stays image/webp (default for our uploads)
     } else {
       const imgResponse = await fetch(imageUrl);
       const arrayBuffer = await imgResponse.arrayBuffer();
