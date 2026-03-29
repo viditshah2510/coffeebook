@@ -1,3 +1,8 @@
 coffeebook.thescale.in {
-	reverse_proxy localhost:3456
+	handle /deploy* {
+		reverse_proxy localhost:9876
+	}
+	handle {
+		reverse_proxy localhost:3456
+	}
 }
