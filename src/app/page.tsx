@@ -1,4 +1,4 @@
-import { ProfileSelector } from "@/components/profile-selector";
+import { PasswordGate } from "@/components/password-gate";
 
 export default function HomePage() {
   return (
@@ -15,7 +15,7 @@ export default function HomePage() {
       </div>
 
       {/* Profile selection */}
-      <ProfileSelector />
+      <PasswordGate />
 
       {/* Footer */}
       <p className="mt-12 text-xs text-coffee-brown/50">

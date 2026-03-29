@@ -7,7 +7,7 @@ import { uploadPhoto } from "@/server/actions/photo-actions";
 interface PhotoUploadProps {
   photos: string[];
   onChange: (photos: string[]) => void;
-  onLabelPhoto?: (url: string) => void;
+  onPhotoAdded?: (url: string) => void;
 }
 
 async function resizeImage(file: File, maxWidth = 1200): Promise<File> {
@@ -41,12 +41,11 @@ async function resizeImage(file: File, maxWidth = 1200): Promise<File> {
   });
 }
 
-export function PhotoUpload({ photos, onChange, onLabelPhoto }: PhotoUploadProps) {
+export function PhotoUpload({ photos, onChange, onPhotoAdded }: PhotoUploadProps) {
   const inputRef = useRef<HTMLInputElement>(null);
-  const labelInputRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
 
-  async function handleFiles(files: FileList, isLabel = false) {
+  async function handleFiles(files: FileList) {
     setUploading(true);
     try {
       for (const file of Array.from(files)) {
@@ -55,8 +54,8 @@ export function PhotoUpload({ photos, onChange, onLabelPhoto }: PhotoUploadProps
         formData.set("file", resized);
         const { url } = await uploadPhoto(formData);
         onChange([...photos, url]);
-        if (isLabel && onLabelPhoto) {
-          onLabelPhoto(url);
+        if (onPhotoAdded) {
+          onPhotoAdded(url);
         }
       }
     } catch (err) {
@@ -90,7 +89,7 @@ export function PhotoUpload({ photos, onChange, onLabelPhoto }: PhotoUploadProps
         </div>
       )}
 
-      {/* Upload buttons */}
+      {/* Upload button */}
       <div className="flex gap-2">
         <button
           type="button"
@@ -105,28 +104,6 @@ export function PhotoUpload({ photos, onChange, onLabelPhoto }: PhotoUploadProps
           )}
           Add Photo
         </button>
-
-        {onLabelPhoto && (
-          <button
-            type="button"
-            onClick={() => labelInputRef.current?.click()}
-            disabled={uploading}
-            className="btn-craft flex flex-1 items-center justify-center gap-2 rounded-full border border-coffee-gold bg-coffee-gold/10 px-4 py-3 text-sm font-medium text-coffee-gold disabled:opacity-50"
-          >
-            {uploading ? (
-              <Loader2 className="h-4 w-4 animate-spin" />
-            ) : (
-              <svg className="h-4 w-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth={2}>
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <path d="M14 2v6h6" />
-                <path d="M16 13H8" />
-                <path d="M16 17H8" />
-                <path d="M10 9H8" />
-              </svg>
-            )}
-            Scan Label
-          </button>
-        )}
       </div>
 
       <input
@@ -137,14 +114,6 @@ export function PhotoUpload({ photos, onChange, onLabelPhoto }: PhotoUploadProps
         multiple
         className="hidden"
         onChange={(e) => e.target.files && handleFiles(e.target.files)}
-      />
-      <input
-        ref={labelInputRef}
-        type="file"
-        accept="image/*"
-        capture="environment"
-        className="hidden"
-        onChange={(e) => e.target.files && handleFiles(e.target.files, true)}
       />
     </div>
   );

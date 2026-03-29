@@ -19,19 +19,14 @@ WORKDIR /app
 ENV NODE_ENV=production
 ENV PORT=3456
 
-RUN addgroup --system --gid 1001 nodejs
-RUN adduser --system --uid 1001 nextjs
-
 # Copy standalone build
 COPY --from=builder /app/.next/standalone ./
 COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/drizzle ./drizzle
 
-# Create data directories with correct permissions
-RUN mkdir -p data/uploads && chown -R nextjs:nodejs data
-
-USER nextjs
+# Create data directories
+RUN mkdir -p data/uploads
 EXPOSE 3456
 
 CMD ["node", "server.js"]

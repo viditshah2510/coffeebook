@@ -27,12 +27,16 @@ export function EntryForm({ entry }: EntryFormProps) {
   const [rating, setRating] = useState(entry?.rating ?? 0);
   const [ocrLoading, setOcrLoading] = useState(false);
 
-  // Form refs for OCR auto-fill
+  // Form state for ALL fields (controlled)
   const [formValues, setFormValues] = useState({
     coffeeName: entry?.coffeeName ?? "",
     origin: entry?.origin ?? "",
+    location: entry?.location ?? "",
     flavorNotes: entry?.flavorNotes ?? "",
     coffeeWeight: entry?.coffeeWeight?.toString() ?? "",
+    brewTime: entry?.brewTime?.toString() ?? "",
+    grindSize: entry?.grindSize ?? "",
+    notes: entry?.notes ?? "",
   });
 
   async function handleOcr(imageUrl: string) {
@@ -47,6 +51,7 @@ export function EntryForm({ entry }: EntryFormProps) {
       const data = await res.json();
 
       setFormValues((prev) => ({
+        ...prev,
         coffeeName: data.coffee_name || prev.coffeeName,
         origin: data.origin || prev.origin,
         flavorNotes: data.flavor_notes || prev.flavorNotes,
@@ -79,6 +84,14 @@ export function EntryForm({ entry }: EntryFormProps) {
     formData.set("profileId", profileId);
     formData.set("roastLevel", activeRoast);
     formData.set("rating", rating ? rating.toString() : "");
+    formData.set("coffeeName", formValues.coffeeName);
+    formData.set("origin", formValues.origin);
+    formData.set("location", formValues.location);
+    formData.set("flavorNotes", formValues.flavorNotes);
+    formData.set("coffeeWeight", formValues.coffeeWeight);
+    formData.set("brewTime", formValues.brewTime);
+    formData.set("grindSize", formValues.grindSize);
+    formData.set("notes", formValues.notes);
     photos.forEach((url, i) => formData.set(`photo_${i}`, url));
 
     startTransition(async () => {
@@ -102,17 +115,25 @@ export function EntryForm({ entry }: EntryFormProps) {
 
   return (
     <form action={handleSubmit} className="space-y-6">
-      {/* OCR loading overlay */}
+      {/* OCR loading indicator */}
       {ocrLoading && (
-        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/30">
-          <div className="flex flex-col items-center gap-3 rounded-2xl bg-white p-8">
-            <Loader2 className="h-8 w-8 animate-spin text-coffee-gold" />
-            <p className="font-heading text-lg text-coffee-espresso">
-              Reading label...
-            </p>
-          </div>
+        <div className="flex items-center gap-2 rounded-xl bg-coffee-gold/10 px-4 py-3 text-sm text-coffee-gold">
+          <Loader2 className="h-4 w-4 animate-spin" />
+          Reading label...
         </div>
       )}
+
+      {/* Section: Photo (moved to top) */}
+      <section>
+        <h2 className="mb-3 font-heading text-lg font-medium text-coffee-espresso">
+          Photo
+        </h2>
+        <PhotoUpload
+          photos={photos}
+          onChange={setPhotos}
+          onPhotoAdded={handleOcr}
+        />
+      </section>
 
       {/* Section: Coffee Info */}
       <section>
@@ -156,8 +177,11 @@ export function EntryForm({ entry }: EntryFormProps) {
               </label>
               <Input
                 name="location"
+                value={formValues.location}
+                onChange={(e) =>
+                  setFormValues((v) => ({ ...v, location: e.target.value }))
+                }
                 placeholder="e.g., Pune"
-                defaultValue={entry?.location ?? ""}
                 className="rounded-xl border-coffee-brown/20 bg-white text-coffee-espresso placeholder:text-coffee-brown/40 focus:border-coffee-gold focus:ring-coffee-gold"
               />
             </div>
@@ -234,8 +258,11 @@ export function EntryForm({ entry }: EntryFormProps) {
               <Input
                 name="brewTime"
                 type="number"
+                value={formValues.brewTime}
+                onChange={(e) =>
+                  setFormValues((v) => ({ ...v, brewTime: e.target.value }))
+                }
                 placeholder="20"
-                defaultValue={entry?.brewTime ?? ""}
                 className="rounded-xl border-coffee-brown/20 bg-white pr-6 text-coffee-espresso placeholder:text-coffee-brown/40 focus:border-coffee-gold focus:ring-coffee-gold"
               />
               <span className="absolute right-3 top-1/2 -translate-y-1/2 text-xs text-coffee-brown/50">
@@ -249,8 +276,11 @@ export function EntryForm({ entry }: EntryFormProps) {
             </label>
             <Input
               name="grindSize"
+              value={formValues.grindSize}
+              onChange={(e) =>
+                setFormValues((v) => ({ ...v, grindSize: e.target.value }))
+              }
               placeholder="4-5"
-              defaultValue={entry?.grindSize ?? ""}
               className="rounded-xl border-coffee-brown/20 bg-white text-coffee-espresso placeholder:text-coffee-brown/40 focus:border-coffee-gold focus:ring-coffee-gold"
             />
           </div>
@@ -307,25 +337,16 @@ export function EntryForm({ entry }: EntryFormProps) {
             </label>
             <Textarea
               name="notes"
+              value={formValues.notes}
+              onChange={(e) =>
+                setFormValues((v) => ({ ...v, notes: e.target.value }))
+              }
               placeholder="Your thoughts on this coffee..."
               rows={3}
-              defaultValue={entry?.notes ?? ""}
               className="rounded-xl border-coffee-brown/20 bg-white text-coffee-espresso placeholder:text-coffee-brown/40 focus:border-coffee-gold focus:ring-coffee-gold"
             />
           </div>
         </div>
-      </section>
-
-      {/* Section: Photos */}
-      <section>
-        <h2 className="mb-3 font-heading text-lg font-medium text-coffee-espresso">
-          Photos
-        </h2>
-        <PhotoUpload
-          photos={photos}
-          onChange={setPhotos}
-          onLabelPhoto={handleOcr}
-        />
       </section>
 
       {/* Submit */}
