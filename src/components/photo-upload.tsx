@@ -2,21 +2,24 @@
 
 import { useRef, useState } from "react";
 import { Camera, ImagePlus, X, Loader2 } from "lucide-react";
-import { uploadPhoto } from "@/server/actions/photo-actions";
+import { toast } from "sonner";
 
 interface PhotoUploadProps {
   photos: string[];
-  onChange: (photos: string[]) => void;
+  onChange: (updater: string[] | ((prev: string[]) => string[])) => void;
   onPhotosAdded?: (urls: string[]) => void;
 }
 
 async function resizeImage(file: File, maxWidth = 1200): Promise<File> {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     const img = document.createElement("img");
     const canvas = document.createElement("canvas");
     const ctx = canvas.getContext("2d")!;
 
+    const objectUrl = URL.createObjectURL(file);
+
     img.onload = () => {
+      URL.revokeObjectURL(objectUrl);
       let { width, height } = img;
       if (width > maxWidth) {
         height = (height * maxWidth) / width;
@@ -30,6 +33,7 @@ async function resizeImage(file: File, maxWidth = 1200): Promise<File> {
           if (blob) {
             resolve(new File([blob], file.name.replace(/\.\w+$/, ".webp"), { type: "image/webp" }));
           } else {
+            // toBlob failed (e.g., WebP not supported), fall back to original
             resolve(file);
           }
         },
@@ -37,8 +41,21 @@ async function resizeImage(file: File, maxWidth = 1200): Promise<File> {
         0.82
       );
     };
-    img.src = URL.createObjectURL(file);
+    img.onerror = () => {
+      URL.revokeObjectURL(objectUrl);
+      reject(new Error("Failed to load image"));
+    };
+    img.src = objectUrl;
   });
+}
+
+async function uploadFile(file: File): Promise<string> {
+  const formData = new FormData();
+  formData.set("file", file);
+  const res = await fetch("/api/upload", { method: "POST", body: formData });
+  if (!res.ok) throw new Error(`Upload failed: ${res.status}`);
+  const { url } = await res.json();
+  return url;
 }
 
 export function PhotoUpload({ photos, onChange, onPhotosAdded }: PhotoUploadProps) {
@@ -52,22 +69,16 @@ export function PhotoUpload({ photos, onChange, onPhotosAdded }: PhotoUploadProp
     try {
       for (const file of Array.from(files)) {
         const resized = await resizeImage(file);
-        const formData = new FormData();
-        formData.set("file", resized);
-        const { url } = await uploadPhoto(formData);
+        const url = await uploadFile(resized);
         newUrls.push(url);
-      }
-      onChange([...photos, ...newUrls]);
-      if (onPhotosAdded && newUrls.length > 0) {
-        onPhotosAdded(newUrls);
       }
     } catch (err) {
       console.error("Upload failed:", err);
-      // Still add any successfully uploaded photos
-      if (newUrls.length > 0) {
-        onChange([...photos, ...newUrls]);
-        if (onPhotosAdded) onPhotosAdded(newUrls);
-      }
+      toast.error("Photo upload failed. Please try again.");
+    }
+    if (newUrls.length > 0) {
+      onChange((prev) => [...prev, ...newUrls]);
+      if (onPhotosAdded) onPhotosAdded(newUrls);
     }
     setUploading(false);
   }
