@@ -3,7 +3,7 @@ export const dynamic = "force-dynamic";
 import { getEntryById } from "@/server/queries/entry-queries";
 import { notFound } from "next/navigation";
 import { HeaderBar } from "@/components/header-bar";
-import { ROAST_LEVELS, BREW_TYPES } from "@/lib/constants";
+import { ROAST_LEVELS, BREW_TYPES, PROCESS_METHODS } from "@/lib/constants";
 import { formatDistanceToNow, format } from "date-fns";
 import {
   ArrowLeft,
@@ -29,6 +29,7 @@ export default async function EntryDetailPage({ params }: EntryDetailPageProps) 
 
   const roast = ROAST_LEVELS.find((r) => r.value === entry.roastLevel);
   const brew = BREW_TYPES.find((b) => b.value === entry.brewType);
+  const process = PROCESS_METHODS.find((p) => p.value === entry.processMethod);
   const flavors = entry.flavorNotes
     ?.split(",")
     .map((f) => f.trim())
@@ -163,6 +164,11 @@ export default async function EntryDetailPage({ params }: EntryDetailPageProps) 
               {roast.label} Roast
             </span>
           )}
+          {process && (
+            <span className="inline-flex items-center rounded-full border border-coffee-gold/30 bg-coffee-gold/10 px-3 py-1.5 text-sm font-medium text-coffee-gold">
+              {process.label}
+            </span>
+          )}
           {flavors?.map((flavor) => (
             <span
               key={flavor}
@@ -218,6 +224,28 @@ export default async function EntryDetailPage({ params }: EntryDetailPageProps) 
                   {entry.grinderType}
                 </span>
                 <span className="text-xs text-coffee-brown">Grinder</span>
+              </div>
+            )}
+          </div>
+        )}
+
+        {/* Best Had / Niche Recipe */}
+        {(entry.bestHad || entry.nicheRecipe) && (
+          <div className="mt-6 grid grid-cols-2 gap-3">
+            {entry.bestHad && (
+              <div className="rounded-xl bg-coffee-cream p-4">
+                <h2 className="mb-1 text-xs font-medium uppercase tracking-wider text-coffee-brown">
+                  Best Had
+                </h2>
+                <p className="text-sm text-coffee-espresso">{entry.bestHad}</p>
+              </div>
+            )}
+            {entry.nicheRecipe && (
+              <div className="rounded-xl bg-coffee-cream p-4">
+                <h2 className="mb-1 text-xs font-medium uppercase tracking-wider text-coffee-brown">
+                  Niche Recipe
+                </h2>
+                <p className="text-sm text-coffee-espresso">{entry.nicheRecipe}</p>
               </div>
             )}
           </div>

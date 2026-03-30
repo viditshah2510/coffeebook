@@ -1,13 +1,13 @@
 "use client";
 
 import { useRef, useState } from "react";
-import { Camera, X, Loader2 } from "lucide-react";
+import { Camera, ImagePlus, X, Loader2 } from "lucide-react";
 import { uploadPhoto } from "@/server/actions/photo-actions";
 
 interface PhotoUploadProps {
   photos: string[];
   onChange: (photos: string[]) => void;
-  onPhotoAdded?: (url: string) => void;
+  onPhotosAdded?: (urls: string[]) => void;
 }
 
 async function resizeImage(file: File, maxWidth = 1200): Promise<File> {
@@ -41,25 +41,33 @@ async function resizeImage(file: File, maxWidth = 1200): Promise<File> {
   });
 }
 
-export function PhotoUpload({ photos, onChange, onPhotoAdded }: PhotoUploadProps) {
-  const inputRef = useRef<HTMLInputElement>(null);
+export function PhotoUpload({ photos, onChange, onPhotosAdded }: PhotoUploadProps) {
+  const cameraRef = useRef<HTMLInputElement>(null);
+  const galleryRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
 
   async function handleFiles(files: FileList) {
     setUploading(true);
+    const newUrls: string[] = [];
     try {
       for (const file of Array.from(files)) {
         const resized = await resizeImage(file);
         const formData = new FormData();
         formData.set("file", resized);
         const { url } = await uploadPhoto(formData);
-        onChange([...photos, url]);
-        if (onPhotoAdded) {
-          onPhotoAdded(url);
-        }
+        newUrls.push(url);
+      }
+      onChange([...photos, ...newUrls]);
+      if (onPhotosAdded && newUrls.length > 0) {
+        onPhotosAdded(newUrls);
       }
     } catch (err) {
       console.error("Upload failed:", err);
+      // Still add any successfully uploaded photos
+      if (newUrls.length > 0) {
+        onChange([...photos, ...newUrls]);
+        if (onPhotosAdded) onPhotosAdded(newUrls);
+      }
     }
     setUploading(false);
   }
@@ -89,31 +97,46 @@ export function PhotoUpload({ photos, onChange, onPhotoAdded }: PhotoUploadProps
         </div>
       )}
 
-      {/* Upload button */}
+      {/* Upload buttons */}
       <div className="flex gap-2">
         <button
           type="button"
-          onClick={() => inputRef.current?.click()}
+          onClick={() => galleryRef.current?.click()}
           disabled={uploading}
           className="btn-craft flex flex-1 items-center justify-center gap-2 rounded-full border border-coffee-espresso bg-white px-4 py-3 text-sm font-medium text-coffee-espresso disabled:opacity-50"
         >
           {uploading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
           ) : (
-            <Camera className="h-4 w-4" />
+            <ImagePlus className="h-4 w-4" />
           )}
           Add Photo
+        </button>
+        <button
+          type="button"
+          onClick={() => cameraRef.current?.click()}
+          disabled={uploading}
+          className="btn-craft flex items-center justify-center gap-2 rounded-full border border-coffee-brown/20 bg-white px-4 py-3 text-sm font-medium text-coffee-brown disabled:opacity-50"
+        >
+          <Camera className="h-4 w-4" />
         </button>
       </div>
 
       <input
-        ref={inputRef}
+        ref={galleryRef}
+        type="file"
+        accept="image/*"
+        multiple
+        className="hidden"
+        onChange={(e) => { if (e.target.files) handleFiles(e.target.files); e.target.value = ""; }}
+      />
+      <input
+        ref={cameraRef}
         type="file"
         accept="image/*"
         capture="environment"
-        multiple
         className="hidden"
-        onChange={(e) => e.target.files && handleFiles(e.target.files)}
+        onChange={(e) => { if (e.target.files) handleFiles(e.target.files); e.target.value = ""; }}
       />
     </div>
   );

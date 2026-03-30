@@ -15,6 +15,20 @@
       "when": 1774818569093,
       "tag": "0001_abnormal_eternals",
       "breakpoints": true
+    },
+    {
+      "idx": 2,
+      "version": "6",
+      "when": 1774844123624,
+      "tag": "0002_deep_scarlet_spider",
+      "breakpoints": true
+    },
+    {
+      "idx": 3,
+      "version": "6",
+      "when": 1774844294379,
+      "tag": "0003_blue_titania",
+      "breakpoints": true
     }
   ]
 }

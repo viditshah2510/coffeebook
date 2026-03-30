@@ -3,7 +3,7 @@
 import { useState, useTransition } from "react";
 import { useRouter } from "next/navigation";
 import { useProfile } from "@/hooks/use-profile";
-import { ROAST_LEVELS, BREW_TYPES } from "@/lib/constants";
+import { ROAST_LEVELS, BREW_TYPES, PROCESS_METHODS } from "@/lib/constants";
 import { createEntry, updateEntry } from "@/server/actions/entry-actions";
 import { createRoastery } from "@/server/actions/roastery-actions";
 import { createEstate } from "@/server/actions/estate-actions";
@@ -44,6 +44,7 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
   );
   const [activeRoast, setActiveRoast] = useState(entry?.roastLevel ?? "");
   const [activeBrew, setActiveBrew] = useState(entry?.brewType ?? "");
+  const [activeProcess, setActiveProcess] = useState(entry?.processMethod ?? "");
   const [rating, setRating] = useState(entry?.rating ?? 0);
   const [ocrLoading, setOcrLoading] = useState(false);
 
@@ -70,17 +71,19 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
     brewTime: entry?.brewTime?.toString() ?? "",
     grindSize: entry?.grindSize ?? "",
     grinderType: entry?.grinderType ?? "",
+    bestHad: entry?.bestHad ?? "",
+    nicheRecipe: entry?.nicheRecipe ?? "",
     tasteNotes: entry?.tasteNotes ?? "",
     notes: entry?.notes ?? "",
   });
 
-  async function handleOcr(imageUrl: string) {
+  async function handleOcr(imageUrls: string[]) {
     setOcrLoading(true);
     try {
       const res = await fetch("/api/ocr", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ imageUrl }),
+        body: JSON.stringify({ imageUrls }),
       });
       if (!res.ok) throw new Error("OCR failed");
       const data = await res.json();
@@ -100,6 +103,15 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
             r.label.toLowerCase() === data.roast_level?.toLowerCase()
         );
         if (match) setActiveRoast(match.value);
+      }
+
+      if (data.process_method) {
+        const match = PROCESS_METHODS.find(
+          (p) =>
+            p.value === data.process_method ||
+            p.label.toLowerCase() === data.process_method?.toLowerCase()
+        );
+        if (match) setActiveProcess(match.value);
       }
 
       toast.success("Label scanned! Review the auto-filled fields.");
@@ -165,6 +177,7 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
     formData.set("estateId", estateId);
     formData.set("roastLevel", activeRoast);
     formData.set("brewType", activeBrew);
+    formData.set("processMethod", activeProcess);
     formData.set("rating", rating ? rating.toString() : "");
     formData.set("coffeeName", formValues.coffeeName);
     formData.set("origin", formValues.origin);
@@ -175,6 +188,8 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
     formData.set("brewTime", formValues.brewTime);
     formData.set("grindSize", formValues.grindSize);
     formData.set("grinderType", formValues.grinderType);
+    formData.set("bestHad", formValues.bestHad);
+    formData.set("nicheRecipe", formValues.nicheRecipe);
     formData.set("tasteNotes", formValues.tasteNotes);
     formData.set("notes", formValues.notes);
     photos.forEach((url, i) => formData.set(`photo_${i}`, url));
@@ -216,7 +231,7 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
         <PhotoUpload
           photos={photos}
           onChange={setPhotos}
-          onPhotoAdded={handleOcr}
+          onPhotosAdded={handleOcr}
         />
       </section>
 
@@ -383,6 +398,31 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
         </div>
       </section>
 
+      {/* Section: Washing Process */}
+      <section>
+        <h2 className="mb-3 font-heading text-lg font-medium text-coffee-espresso">
+          Washing Process
+        </h2>
+        <div className="flex flex-wrap gap-2">
+          {PROCESS_METHODS.map((proc) => (
+            <button
+              key={proc.value}
+              type="button"
+              onClick={() =>
+                setActiveProcess(activeProcess === proc.value ? "" : proc.value)
+              }
+              className={`rounded-xl px-3 py-2.5 text-xs font-medium transition-all ${
+                activeProcess === proc.value
+                  ? "bg-coffee-teal text-white ring-2 ring-coffee-gold ring-offset-2"
+                  : "bg-coffee-cream text-coffee-brown hover:bg-coffee-light-cream"
+              }`}
+            >
+              {proc.label}
+            </button>
+          ))}
+        </div>
+      </section>
+
       {/* Section: Brewing */}
       <section>
         <h2 className="mb-3 font-heading text-lg font-medium text-coffee-espresso">
@@ -499,6 +539,36 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
                 setFormValues((v) => ({ ...v, flavorNotes: e.target.value }))
               }
               placeholder="e.g., peanut butter, chocolate, citrus"
+              className="rounded-xl border-coffee-brown/20 bg-white text-coffee-espresso placeholder:text-coffee-brown/40 focus:border-coffee-gold focus:ring-coffee-gold"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wider text-coffee-brown">
+              Best Had
+            </label>
+            <Input
+              name="bestHad"
+              value={formValues.bestHad}
+              onChange={(e) =>
+                setFormValues((v) => ({ ...v, bestHad: e.target.value }))
+              }
+              placeholder="e.g., with milk, as a latte, black"
+              className="rounded-xl border-coffee-brown/20 bg-white text-coffee-espresso placeholder:text-coffee-brown/40 focus:border-coffee-gold focus:ring-coffee-gold"
+            />
+          </div>
+
+          <div>
+            <label className="mb-1 block text-xs font-medium uppercase tracking-wider text-coffee-brown">
+              Niche Recipe
+            </label>
+            <Input
+              name="nicheRecipe"
+              value={formValues.nicheRecipe}
+              onChange={(e) =>
+                setFormValues((v) => ({ ...v, nicheRecipe: e.target.value }))
+              }
+              placeholder="e.g., with tonic, affogato, iced oat cortado"
               className="rounded-xl border-coffee-brown/20 bg-white text-coffee-espresso placeholder:text-coffee-brown/40 focus:border-coffee-gold focus:ring-coffee-gold"
             />
           </div>

@@ -1,0 +1,1 @@
+ALTER TABLE `coffee_entries` ADD `process_method` text;

@@ -25,8 +25,12 @@ COPY --from=builder /app/.next/static ./.next/static
 COPY --from=builder /app/public ./public
 COPY --from=builder /app/drizzle ./drizzle
 
+# Copy entrypoint and migration runner
+COPY --from=builder /app/docker-entrypoint.sh ./docker-entrypoint.sh
+RUN chmod +x docker-entrypoint.sh
+
 # Create data directories
 RUN mkdir -p data/uploads
 EXPOSE 3456
 
-CMD ["node", "server.js"]
+CMD ["./docker-entrypoint.sh"]

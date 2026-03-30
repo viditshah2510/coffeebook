@@ -42,6 +42,7 @@ export const coffeeEntries = sqliteTable("coffee_entries", {
   location: text("location"),
   roastLevel: text("roast_level"),
   brewType: text("brew_type"),
+  processMethod: text("process_method"),
   flavorNotes: text("flavor_notes"),
   coffeeWeight: real("coffee_weight"),
   shotWeight: real("shot_weight"),
@@ -49,6 +50,8 @@ export const coffeeEntries = sqliteTable("coffee_entries", {
   grindSize: text("grind_size"),
   grinderType: text("grinder_type"),
   rating: real("rating"),
+  bestHad: text("best_had"),
+  nicheRecipe: text("niche_recipe"),
   tasteNotes: text("taste_notes"),
   notes: text("notes"),
   createdAt: text("created_at")

@@ -1,5 +1,5 @@
 import type { CoffeeEntry, EntryPhoto, Profile, Roastery, Estate } from "@/lib/db/schema";
-import { ROAST_LEVELS, BREW_TYPES } from "@/lib/constants";
+import { ROAST_LEVELS, BREW_TYPES, PROCESS_METHODS } from "@/lib/constants";
 import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
 
@@ -13,6 +13,7 @@ type EntryWithRelations = CoffeeEntry & {
 export function EntryCard({ entry }: { entry: EntryWithRelations }) {
   const roast = ROAST_LEVELS.find((r) => r.value === entry.roastLevel);
   const brew = BREW_TYPES.find((b) => b.value === entry.brewType);
+  const process = PROCESS_METHODS.find((p) => p.value === entry.processMethod);
   const flavors = entry.flavorNotes
     ?.split(",")
     .map((f) => f.trim())
@@ -109,6 +110,11 @@ export function EntryCard({ entry }: { entry: EntryWithRelations }) {
               {roast.label}
             </span>
           )}
+          {process && (
+            <span className="inline-flex items-center rounded-full border border-coffee-gold/30 bg-coffee-gold/10 px-2.5 py-1 text-xs font-medium text-coffee-gold">
+              {process.label}
+            </span>
+          )}
           {flavors?.map((flavor) => (
             <span
               key={flavor}
@@ -133,6 +139,18 @@ export function EntryCard({ entry }: { entry: EntryWithRelations }) {
             )}
             {entry.grindSize && (
               <span>grind {entry.grindSize}</span>
+            )}
+          </div>
+        )}
+
+        {/* Best Had / Niche Recipe */}
+        {(entry.bestHad || entry.nicheRecipe) && (
+          <div className="mt-2 flex flex-wrap gap-2 text-xs text-coffee-brown/80">
+            {entry.bestHad && (
+              <span>Best: {entry.bestHad}</span>
+            )}
+            {entry.nicheRecipe && (
+              <span>Recipe: {entry.nicheRecipe}</span>
             )}
           </div>
         )}

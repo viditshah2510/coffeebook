@@ -22,6 +22,14 @@ export const BREW_TYPES = [
   { value: "filter", label: "Filter" },
 ] as const;
 
+export const PROCESS_METHODS = [
+  { value: "washed", label: "Washed" },
+  { value: "natural", label: "Natural" },
+  { value: "anaerobic", label: "Anaerobic" },
+  { value: "honey", label: "Honey" },
+  { value: "permaculture", label: "Permaculture" },
+] as const;
+
 export type ProfileId = (typeof PROFILES)[number]["id"];
 export type RoastLevel = (typeof ROAST_LEVELS)[number]["value"];
 export type BrewType = (typeof BREW_TYPES)[number]["value"];
