@@ -63,7 +63,7 @@ export function PhotoUpload({ photos, onChange, onPhotosAdded }: PhotoUploadProp
   const galleryRef = useRef<HTMLInputElement>(null);
   const [uploading, setUploading] = useState(false);
 
-  async function handleFiles(files: FileList) {
+  async function handleFiles(files: FileList, inputRef: React.RefObject<HTMLInputElement | null>) {
     setUploading(true);
     const newUrls: string[] = [];
     try {
@@ -81,6 +81,8 @@ export function PhotoUpload({ photos, onChange, onPhotosAdded }: PhotoUploadProp
       if (onPhotosAdded) onPhotosAdded(newUrls);
     }
     setUploading(false);
+    // Reset input after processing — deferred to avoid iOS Safari issues
+    if (inputRef.current) inputRef.current.value = "";
   }
 
   function removePhoto(index: number) {
@@ -138,16 +140,16 @@ export function PhotoUpload({ photos, onChange, onPhotosAdded }: PhotoUploadProp
         type="file"
         accept="image/*"
         multiple
-        className="hidden"
-        onChange={(e) => { if (e.target.files) handleFiles(e.target.files); e.target.value = ""; }}
+        style={{ position: "absolute", opacity: 0, width: 0, height: 0, overflow: "hidden", pointerEvents: "none" }}
+        onChange={(e) => { if (e.target.files?.length) handleFiles(e.target.files, galleryRef); }}
       />
       <input
         ref={cameraRef}
         type="file"
         accept="image/*"
         capture="environment"
-        className="hidden"
-        onChange={(e) => { if (e.target.files) handleFiles(e.target.files); e.target.value = ""; }}
+        style={{ position: "absolute", opacity: 0, width: 0, height: 0, overflow: "hidden", pointerEvents: "none" }}
+        onChange={(e) => { if (e.target.files?.length) handleFiles(e.target.files, cameraRef); }}
       />
     </div>
   );

@@ -55,8 +55,10 @@ export async function POST(req: NextRequest) {
         type: "text" as const,
         text: `Extract coffee information from ${images.length > 1 ? "these coffee bag/label images (front, back, etc.)" : "this coffee bag/label image"}. Combine information from all images. Return ONLY valid JSON with these fields:
 {
-  "coffee_name": "brand and product name",
-  "origin": "country, region, or estate name if visible",
+  "coffee_name": "just the coffee/blend name, WITHOUT the roastery/brand name (e.g. 'Bili Hu', 'Half Light', 'Attikan Estate')",
+  "roastery_name": "the roastery, roaster, or brand name (e.g. 'Subko', 'Blue Tokai', 'Third Wave Coffee')",
+  "estate_name": "the estate or farm name if mentioned (e.g. 'Kerehaklu Estate', 'Moolay Estate')",
+  "origin": "country or region if visible (e.g. 'Chikmagalur, India', 'Ethiopia')",
   "roast_level": "light" or "medium" or "medium-dark" or "dark" (infer from color descriptions or explicit mentions),
   "flavor_notes": "comma-separated flavor descriptors if listed",
   "coffee_weight": weight in grams as a number if visible, or null,

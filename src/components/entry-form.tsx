@@ -114,6 +114,52 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
         if (match) setActiveProcess(match.value);
       }
 
+      // Match or auto-create roastery from OCR
+      if (data.roastery_name && !roasteryId) {
+        const ocrName = data.roastery_name.trim().toLowerCase();
+        const match = roasteries.find((r) => r.name.toLowerCase() === ocrName);
+        if (match) {
+          setRoasteryId(match.id);
+        } else {
+          try {
+            const fd = new FormData();
+            fd.set("name", data.roastery_name.trim());
+            const result = await createRoastery(fd);
+            const newR = { id: result.id, name: result.name, createdAt: new Date().toISOString() };
+            setRoasteries((prev) => [...prev, newR].sort((a, b) => a.name.localeCompare(b.name)));
+            setRoasteryId(result.id);
+          } catch { /* ignore duplicate errors */ }
+        }
+      }
+
+      // Match or auto-create estate from OCR
+      if (data.estate_name && !estateId) {
+        const ocrName = data.estate_name.trim().toLowerCase();
+        const match = estates.find((e) => e.name.toLowerCase() === ocrName);
+        if (match) {
+          setEstateId(match.id);
+        } else {
+          try {
+            const fd = new FormData();
+            fd.set("name", data.estate_name.trim());
+            fd.set("location", "");
+            fd.set("country", "");
+            fd.set("masl", "");
+            const result = await createEstate(fd);
+            const newE = {
+              id: result.id,
+              name: result.name,
+              location: null,
+              country: null,
+              masl: null,
+              createdAt: new Date().toISOString(),
+            };
+            setEstates((prev) => [...prev, newE].sort((a, b) => a.name.localeCompare(b.name)));
+            setEstateId(result.id);
+          } catch { /* ignore duplicate errors */ }
+        }
+      }
+
       toast.success("Label scanned! Review the auto-filled fields.");
     } catch {
       toast.error("Could not read the label. Try a clearer photo.");
