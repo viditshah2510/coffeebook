@@ -1,23 +1,10 @@
 import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
+import sharp from "sharp";
 
 const UPLOAD_DIR = path.join(process.cwd(), "data", "uploads");
-
-function getExtension(buffer: Buffer): string {
-  if (buffer[0] === 0xff && buffer[1] === 0xd8) return ".jpg";
-  if (buffer[0] === 0x89 && buffer[1] === 0x50) return ".png";
-  if (buffer[0] === 0x47 && buffer[1] === 0x49) return ".gif";
-  if (
-    buffer.length >= 12 &&
-    buffer[8] === 0x57 &&
-    buffer[9] === 0x45 &&
-    buffer[10] === 0x42 &&
-    buffer[11] === 0x50
-  )
-    return ".webp";
-  return ".jpg";
-}
+const MAX_WIDTH = 1200;
 
 export async function POST(req: NextRequest) {
   try {
@@ -31,11 +18,20 @@ export async function POST(req: NextRequest) {
 
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
-    const ext = getExtension(buffer);
-    const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}${ext}`;
+
+    // Resize with sharp — handles all formats, low memory, fast
+    const image = sharp(buffer).rotate(); // .rotate() applies EXIF orientation
+    const metadata = await image.metadata();
+    const needsResize = metadata.width && metadata.width > MAX_WIDTH;
+
+    const processed = needsResize
+      ? await image.resize(MAX_WIDTH, undefined, { withoutEnlargement: true }).jpeg({ quality: 85 }).toBuffer()
+      : await image.jpeg({ quality: 85 }).toBuffer();
+
+    const filename = `${Date.now()}-${Math.random().toString(36).slice(2, 8)}.jpg`;
     const filepath = path.join(UPLOAD_DIR, filename);
 
-    await writeFile(filepath, buffer);
+    await writeFile(filepath, processed);
 
     return NextResponse.json({ url: `/api/uploads/${filename}` });
   } catch (err) {
