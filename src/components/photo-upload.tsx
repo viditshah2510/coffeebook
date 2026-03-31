@@ -94,7 +94,7 @@ export function PhotoUpload({
       {/* Upload buttons — <label> triggers file input natively, no programmatic .click() needed */}
       <div className="flex gap-2">
         <label
-          className={`btn-craft flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-full border border-coffee-espresso bg-white px-4 py-3 text-sm font-medium text-coffee-espresso ${uploading ? "pointer-events-none opacity-50" : ""}`}
+          className={`btn-craft relative flex flex-1 cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full border border-coffee-espresso bg-white px-4 py-3 text-sm font-medium text-coffee-espresso ${uploading ? "pointer-events-none opacity-50" : ""}`}
         >
           {uploading ? (
             <Loader2 className="h-4 w-4 animate-spin" />
@@ -106,19 +106,19 @@ export function PhotoUpload({
             type="file"
             accept="image/*"
             multiple
-            className="absolute h-0 w-0 overflow-hidden opacity-0"
+            className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
             onChange={handleFiles}
           />
         </label>
         <label
-          className={`btn-craft flex cursor-pointer items-center justify-center gap-2 rounded-full border border-coffee-brown/20 bg-white px-4 py-3 text-sm font-medium text-coffee-brown ${uploading ? "pointer-events-none opacity-50" : ""}`}
+          className={`btn-craft relative flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full border border-coffee-brown/20 bg-white px-4 py-3 text-sm font-medium text-coffee-brown ${uploading ? "pointer-events-none opacity-50" : ""}`}
         >
           <Camera className="h-4 w-4" />
           <input
             type="file"
             accept="image/*"
             capture="environment"
-            className="absolute h-0 w-0 overflow-hidden opacity-0"
+            className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
             onChange={handleFiles}
           />
         </label>
