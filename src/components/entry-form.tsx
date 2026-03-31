@@ -5,8 +5,6 @@ import { useRouter } from "next/navigation";
 import { useProfile } from "@/hooks/use-profile";
 import { ROAST_LEVELS, BREW_TYPES, PROCESS_METHODS } from "@/lib/constants";
 import { createEntry, updateEntry } from "@/server/actions/entry-actions";
-import { createRoastery } from "@/server/actions/roastery-actions";
-import { createEstate } from "@/server/actions/estate-actions";
 import { PhotoUpload } from "./photo-upload";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
@@ -122,13 +120,18 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
           setRoasteryId(match.id);
         } else {
           try {
-            const fd = new FormData();
-            fd.set("name", data.roastery_name.trim());
-            const result = await createRoastery(fd);
-            const newR = { id: result.id, name: result.name, createdAt: new Date().toISOString() };
-            setRoasteries((prev) => [...prev, newR].sort((a, b) => a.name.localeCompare(b.name)));
-            setRoasteryId(result.id);
-          } catch { /* ignore duplicate errors */ }
+            const res = await fetch("/api/roasteries", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name: data.roastery_name.trim() }),
+            });
+            if (res.ok) {
+              const result = await res.json();
+              const newR = { id: result.id, name: result.name, createdAt: new Date().toISOString() };
+              setRoasteries((prev) => [...prev, newR].sort((a, b) => a.name.localeCompare(b.name)));
+              setRoasteryId(result.id);
+            }
+          } catch { /* ignore errors */ }
         }
       }
 
@@ -140,23 +143,25 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
           setEstateId(match.id);
         } else {
           try {
-            const fd = new FormData();
-            fd.set("name", data.estate_name.trim());
-            fd.set("location", "");
-            fd.set("country", "");
-            fd.set("masl", "");
-            const result = await createEstate(fd);
-            const newE = {
-              id: result.id,
-              name: result.name,
-              location: null,
-              country: null,
-              masl: null,
-              createdAt: new Date().toISOString(),
-            };
-            setEstates((prev) => [...prev, newE].sort((a, b) => a.name.localeCompare(b.name)));
-            setEstateId(result.id);
-          } catch { /* ignore duplicate errors */ }
+            const res = await fetch("/api/estates", {
+              method: "POST",
+              headers: { "Content-Type": "application/json" },
+              body: JSON.stringify({ name: data.estate_name.trim() }),
+            });
+            if (res.ok) {
+              const result = await res.json();
+              const newE = {
+                id: result.id,
+                name: result.name,
+                location: null,
+                country: null,
+                masl: null,
+                createdAt: new Date().toISOString(),
+              };
+              setEstates((prev) => [...prev, newE].sort((a, b) => a.name.localeCompare(b.name)));
+              setEstateId(result.id);
+            }
+          } catch { /* ignore errors */ }
         }
       }
 
@@ -169,10 +174,14 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
 
   async function handleAddRoastery() {
     if (!newRoasteryName.trim()) return;
-    const formData = new FormData();
-    formData.set("name", newRoasteryName.trim());
     try {
-      const result = await createRoastery(formData);
+      const res = await fetch("/api/roasteries", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ name: newRoasteryName.trim() }),
+      });
+      if (!res.ok) throw new Error("Failed");
+      const result = await res.json();
       const newR = { id: result.id, name: result.name, createdAt: new Date().toISOString() };
       setRoasteries((prev) => [...prev, newR].sort((a, b) => a.name.localeCompare(b.name)));
       setRoasteryId(result.id);
@@ -186,13 +195,19 @@ export function EntryForm({ entry, roasteries: initialRoasteries, estates: initi
 
   async function handleAddEstate() {
     if (!newEstate.name.trim()) return;
-    const formData = new FormData();
-    formData.set("name", newEstate.name.trim());
-    formData.set("location", newEstate.location.trim());
-    formData.set("country", newEstate.country.trim());
-    formData.set("masl", newEstate.masl);
     try {
-      const result = await createEstate(formData);
+      const res = await fetch("/api/estates", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: newEstate.name.trim(),
+          location: newEstate.location.trim(),
+          country: newEstate.country.trim(),
+          masl: newEstate.masl,
+        }),
+      });
+      if (!res.ok) throw new Error("Failed");
+      const result = await res.json();
       const newE = {
         id: result.id,
         name: result.name,
