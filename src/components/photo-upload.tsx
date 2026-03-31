@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useId } from "react";
+import { useState } from "react";
 import { Camera, ImagePlus, X, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -8,76 +8,6 @@ interface PhotoUploadProps {
   photos: string[];
   onChange: (updater: string[] | ((prev: string[]) => string[])) => void;
   onPhotosAdded?: (urls: string[]) => void;
-}
-
-const RESIZE_TIMEOUT_MS = 10000;
-const MAX_WIDTH = 1200;
-
-async function resizeImage(file: File): Promise<File> {
-  return new Promise((resolve) => {
-    const timeout = setTimeout(() => resolve(file), RESIZE_TIMEOUT_MS);
-
-    try {
-      const reader = new FileReader();
-      reader.onload = () => {
-        const img = document.createElement("img");
-        img.onload = () => {
-          try {
-            let { width, height } = img;
-            if (width <= MAX_WIDTH) {
-              clearTimeout(timeout);
-              resolve(file);
-              return;
-            }
-            height = (height * MAX_WIDTH) / width;
-            width = MAX_WIDTH;
-            const canvas = document.createElement("canvas");
-            canvas.width = width;
-            canvas.height = height;
-            const ctx = canvas.getContext("2d");
-            if (!ctx) {
-              clearTimeout(timeout);
-              resolve(file);
-              return;
-            }
-            ctx.drawImage(img, 0, 0, width, height);
-            canvas.toBlob(
-              (blob) => {
-                clearTimeout(timeout);
-                if (blob) {
-                  resolve(
-                    new File([blob], file.name.replace(/\.\w+$/, ".jpg"), {
-                      type: "image/jpeg",
-                    })
-                  );
-                } else {
-                  resolve(file);
-                }
-              },
-              "image/jpeg",
-              0.85
-            );
-          } catch {
-            clearTimeout(timeout);
-            resolve(file);
-          }
-        };
-        img.onerror = () => {
-          clearTimeout(timeout);
-          resolve(file);
-        };
-        img.src = reader.result as string;
-      };
-      reader.onerror = () => {
-        clearTimeout(timeout);
-        resolve(file);
-      };
-      reader.readAsDataURL(file);
-    } catch {
-      clearTimeout(timeout);
-      resolve(file);
-    }
-  });
 }
 
 async function uploadFile(file: File): Promise<string> {
@@ -94,37 +24,39 @@ export function PhotoUpload({
   onChange,
   onPhotosAdded,
 }: PhotoUploadProps) {
-  const id = useId();
-  const galleryId = `${id}-gallery`;
-  const cameraId = `${id}-camera`;
   const [uploading, setUploading] = useState(false);
 
   async function handleFiles(e: React.ChangeEvent<HTMLInputElement>) {
-    const files = e.target.files;
+    const input = e.target;
+    const files = input.files;
     if (!files?.length) return;
 
-    // Copy files into array immediately — iOS may invalidate the FileList
+    // Copy file references immediately — iOS may invalidate the FileList
     const fileArray = Array.from(files);
 
     setUploading(true);
     const newUrls: string[] = [];
     try {
       for (const file of fileArray) {
-        const resized = await resizeImage(file);
-        const url = await uploadFile(resized);
+        // Upload raw file — no client-side resize.
+        // iOS decoding large images into canvas causes memory pressure
+        // that kills the Safari tab, blanking the page.
+        const url = await uploadFile(file);
         newUrls.push(url);
       }
     } catch (err) {
-      console.error("Upload failed:", err);
-      toast.error("Photo upload failed. Please try again.");
+      console.error("Upload error:", err);
+      toast.error("Photo upload failed. Try again.");
     }
     if (newUrls.length > 0) {
       onChange((prev) => [...prev, ...newUrls]);
       if (onPhotosAdded) onPhotosAdded(newUrls);
     }
     setUploading(false);
-    // Reset input value so the same file can be re-selected
-    e.target.value = "";
+    // Reset so same file can be re-selected — defer for iOS
+    requestAnimationFrame(() => {
+      input.value = "";
+    });
   }
 
   function removePhoto(index: number) {
@@ -159,10 +91,9 @@ export function PhotoUpload({
         </div>
       )}
 
-      {/* Upload buttons — <label> for reliable iOS Safari file input triggering */}
+      {/* Upload buttons — <label> triggers file input natively, no programmatic .click() needed */}
       <div className="flex gap-2">
         <label
-          htmlFor={galleryId}
           className={`btn-craft flex flex-1 cursor-pointer items-center justify-center gap-2 rounded-full border border-coffee-espresso bg-white px-4 py-3 text-sm font-medium text-coffee-espresso ${uploading ? "pointer-events-none opacity-50" : ""}`}
         >
           {uploading ? (
@@ -171,31 +102,27 @@ export function PhotoUpload({
             <ImagePlus className="h-4 w-4" />
           )}
           Add Photo
+          <input
+            type="file"
+            accept="image/*"
+            multiple
+            className="absolute h-0 w-0 overflow-hidden opacity-0"
+            onChange={handleFiles}
+          />
         </label>
         <label
-          htmlFor={cameraId}
           className={`btn-craft flex cursor-pointer items-center justify-center gap-2 rounded-full border border-coffee-brown/20 bg-white px-4 py-3 text-sm font-medium text-coffee-brown ${uploading ? "pointer-events-none opacity-50" : ""}`}
         >
           <Camera className="h-4 w-4" />
+          <input
+            type="file"
+            accept="image/*"
+            capture="environment"
+            className="absolute h-0 w-0 overflow-hidden opacity-0"
+            onChange={handleFiles}
+          />
         </label>
       </div>
-
-      <input
-        id={galleryId}
-        type="file"
-        accept="image/*"
-        multiple
-        className="sr-only"
-        onChange={handleFiles}
-      />
-      <input
-        id={cameraId}
-        type="file"
-        accept="image/*"
-        capture="environment"
-        className="sr-only"
-        onChange={handleFiles}
-      />
     </div>
   );
 }
