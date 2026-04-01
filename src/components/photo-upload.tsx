@@ -4,7 +4,7 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import { ImagePlus, X, Loader2 } from "lucide-react";
 import { toast } from "sonner";
 
-const UPLOAD_TIMEOUT_MS = 60_000;
+const UPLOAD_TIMEOUT_MS = 120_000;
 
 function uploadFile(file: File): Promise<string> {
   return new Promise((resolve, reject) => {
@@ -135,7 +135,7 @@ export function PhotoUpload({ photos, onChange, onPhotosAdded }: PhotoUploadProp
         <input
           ref={inputRef}
           type="file"
-          accept="image/*"
+          accept="image/jpeg,image/png,image/webp"
           multiple
           className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
           style={{ fontSize: 0 }}

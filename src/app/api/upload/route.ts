@@ -2,9 +2,18 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import sharp from "sharp";
+import heicConvert from "heic-convert";
 
 const UPLOAD_DIR = path.join(process.cwd(), "data", "uploads");
 const MAX_WIDTH = 1200;
+
+const HEIC_FTYPES = ["ftypmif1", "ftypheic", "ftypheim", "ftypheis", "ftypmsf1"];
+
+function isHeic(buffer: Buffer): boolean {
+  if (buffer.length < 12) return false;
+  const ftype = buffer.subarray(4, 12).toString("ascii");
+  return HEIC_FTYPES.some((sig) => ftype.startsWith(sig));
+}
 
 export async function POST(req: NextRequest) {
   try {
@@ -17,10 +26,20 @@ export async function POST(req: NextRequest) {
     await mkdir(UPLOAD_DIR, { recursive: true });
 
     const bytes = await file.arrayBuffer();
-    const buffer = Buffer.from(bytes);
+    let buffer = Buffer.from(bytes);
 
-    // Resize with sharp — handles all formats, low memory, fast
-    const image = sharp(buffer).rotate(); // .rotate() applies EXIF orientation
+    // iOS camera sends HEIC which sharp on Alpine cannot decode (no HEVC codec).
+    // Convert to JPEG before passing to sharp.
+    if (isHeic(buffer)) {
+      const converted = await heicConvert({
+        buffer: new Uint8Array(buffer),
+        format: "JPEG",
+        quality: 0.92,
+      });
+      buffer = Buffer.from(converted);
+    }
+
+    const image = sharp(buffer).rotate();
     const metadata = await image.metadata();
     const needsResize = metadata.width && metadata.width > MAX_WIDTH;
 
