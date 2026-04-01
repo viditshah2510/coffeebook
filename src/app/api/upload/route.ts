@@ -2,6 +2,7 @@ import { NextRequest, NextResponse } from "next/server";
 import { writeFile, mkdir } from "fs/promises";
 import path from "path";
 import sharp from "sharp";
+// @ts-expect-error — no type declarations for heic-convert
 import heicConvert from "heic-convert";
 
 const UPLOAD_DIR = path.join(process.cwd(), "data", "uploads");

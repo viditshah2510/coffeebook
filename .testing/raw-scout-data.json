@@ -1,0 +1,2144 @@
+{
+  "findings": {
+    "landing": {
+      "url": "http://localhost:3456/",
+      "title": "Coffeebook",
+      "pre_auth_text": "Coffeebook\n\nTasting notes & brewing journal\n\nEnter\n\nBy Karan, Vidit & Amar",
+      "buttons": [
+        {
+          "text": "K\n\nKaran\n\nTap to enter",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "V\n\nVidit\n\nTap to enter",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "A\n\nAmar\n\nTap to enter",
+          "aria": "",
+          "type": ""
+        }
+      ],
+      "inputs": []
+    },
+    "feed": {
+      "url": "http://localhost:3456/feed",
+      "title": "Coffeebook",
+      "full_text": "Coffeebook\nV\nVidit\nAll\nKaran\nVidit\nAmar\nAll Roasts\nLight\nMedium\nMedium Dark\nDark\nV\n\nVidit\n\nabout 4 hours ago\n\n8.0/10\nBili hu\n\nChikmagalur\n\nPune\n\nMedium Dark\nPeanut butter\nchocolate\ncaramel\n16g in\n20s\ngrind 4-5 on Ashone\n\nBest extraction at 20 secs.",
+      "buttons": [
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "All",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "Karan",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "Vidit",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "Amar",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "All Roasts",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "Light",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "Medium",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "Medium Dark",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "Dark",
+          "aria": "",
+          "type": ""
+        }
+      ],
+      "inputs": [],
+      "links": [
+        {
+          "text": "Coffeebook",
+          "href": "/feed"
+        },
+        {
+          "text": "V\n\nVidit\n\nabout 4 hours ago\n\n8.0/10\nBili hu\n\nChikm",
+          "href": "/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0"
+        },
+        {
+          "text": "",
+          "href": "/entry/new"
+        }
+      ],
+      "entry_hrefs": [
+        "/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0"
+      ]
+    },
+    "entry_new": {
+      "url": "http://localhost:3456/entry/new",
+      "title": "Coffeebook",
+      "full_text": "Coffeebook\nV\nVidit\nBack\nNew Entry\nPhoto\nAdd Photo\nCoffee\nNAME *\nROASTERY\nSelect roastery\nESTATE\nSelect estate\nRoast Level\nLight\nMedium\nMedium Dark\nDark\nBrew Type\nEspresso\nAmericano\nPour Over\nFrench Press\nAeroPress\nCold Brew\nMoka Pot\nFilter\nBrewing\nBEAN WEIGHT\ng\nSHOT WEIGHT\ng\nTIME\ns\nGRIND SIZE\nGRINDER\nTasting\nFLAVOR NOTES\nTASTE NOTES\nRATING\n0\n5\n10\nNOTES\nSave Entry",
+      "inputs": [
+        {
+          "tag": "input",
+          "visible": false,
+          "type": "file",
+          "name": "",
+          "id": "",
+          "placeholder": "",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "coffeeName",
+          "id": "base-ui-_R_9huav5ubrb_",
+          "placeholder": "e.g., Bili hu, Naivo, Half Light",
+          "aria-label": "",
+          "required": true
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "",
+          "id": "base-ui-_R_qhuav5ubrb_-hidden-input",
+          "placeholder": "",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "",
+          "id": "base-ui-_R_rhuav5ubrb_-hidden-input",
+          "placeholder": "",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "number",
+          "name": "coffeeWeight",
+          "id": "base-ui-_R_1hjeav5ubrb_",
+          "placeholder": "16",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "number",
+          "name": "shotWeight",
+          "id": "base-ui-_R_1ijeav5ubrb_",
+          "placeholder": "36",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "number",
+          "name": "brewTime",
+          "id": "base-ui-_R_1jjeav5ubrb_",
+          "placeholder": "25",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "grindSize",
+          "id": "base-ui-_R_kjeav5ubrb_",
+          "placeholder": "4-5",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "grinderType",
+          "id": "base-ui-_R_2reav5ubrb_",
+          "placeholder": "e.g., Niche Zero, Baratza Encore",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "flavorNotes",
+          "id": "base-ui-_R_hjuav5ubrb_",
+          "placeholder": "e.g., peanut butter, chocolate, citrus",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "textarea",
+          "visible": true,
+          "type": "textarea",
+          "name": "tasteNotes",
+          "id": "",
+          "placeholder": "How did this brew taste?",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "range",
+          "name": "",
+          "id": "base-ui-_R_5jjuav5ubrbH2_",
+          "placeholder": "",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "textarea",
+          "visible": true,
+          "type": "textarea",
+          "name": "notes",
+          "id": "",
+          "placeholder": "Your thoughts on this coffee...",
+          "aria-label": "",
+          "required": false
+        }
+      ],
+      "buttons": [
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "Add Photo",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Select roastery",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Select estate",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Light",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Medium",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Medium Dark",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Dark",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Espresso",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Americano",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Pour Over",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "French Press",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "AeroPress",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Cold Brew",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Moka Pot",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Filter",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Save Entry",
+          "aria": "",
+          "type": "submit"
+        }
+      ]
+    },
+    "entry_form_submit": {
+      "success": true,
+      "error": null,
+      "redirect_url": "http://localhost:3456/entry/new"
+    },
+    "roasteries": {
+      "url": "http://localhost:3456/roasteries",
+      "full_text": "Coffeebook\nV\nVidit\nFeed\nRoasteries\nAdd Roastery\n\nNo roasteries yet. Add one to get started.",
+      "buttons": [
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "Add Roastery",
+          "aria": "",
+          "type": ""
+        }
+      ],
+      "inputs": [],
+      "links": [
+        {
+          "text": "Coffeebook",
+          "href": "/feed"
+        },
+        {
+          "text": "Feed",
+          "href": "/feed"
+        }
+      ],
+      "dialog_inputs": [
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "",
+          "id": "base-ui-_r_2_",
+          "placeholder": "e.g., Subko, Blue Tokai, Third Wave",
+          "aria-label": "",
+          "required": false
+        }
+      ]
+    },
+    "estates": {
+      "url": "http://localhost:3456/estates",
+      "full_text": "Coffeebook\nV\nVidit\nFeed\nEstates\nAdd Estate\n\nNo estates yet. Add one to get started.",
+      "buttons": [
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "Add Estate",
+          "aria": "",
+          "type": ""
+        }
+      ],
+      "inputs": [],
+      "dialog_inputs": [
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "",
+          "id": "base-ui-_r_2_",
+          "placeholder": "e.g., Moolay Estate, Kerehaklu",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "",
+          "id": "base-ui-_r_3_",
+          "placeholder": "e.g., Coorg, Karnataka",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "",
+          "id": "base-ui-_r_4_",
+          "placeholder": "e.g., India",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "number",
+          "name": "",
+          "id": "base-ui-_r_5_",
+          "placeholder": "e.g., 1200",
+          "aria-label": "",
+          "required": false
+        }
+      ]
+    },
+    "entry_detail": {
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705",
+      "full_text": "Coffeebook\nV\nVidit\nFeed\nV\n\nVidit\n\nMar 29, 2026 \u00b7 less than a minute ago\n\n8.0/10\nScout Espresso Blend\nEspresso\nLight Roast\n18g\nBean Weight\n36g\nShot Weight\n28s\nBrew Time\nTASTE NOTES\n\nChocolate, caramel, hazelnut\n\nNOTES\n\nSweet, balanced, low acidity",
+      "buttons": [
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        }
+      ]
+    },
+    "entry_edit": {
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705/edit",
+      "full_text": "Coffeebook\nV\nVidit\nBack\nEdit Entry\nPhoto\nAdd Photo\nCoffee\nNAME *\nROASTERY\nSelect roastery\nESTATE\nSelect estate\nRoast Level\nLight\nMedium\nMedium Dark\nDark\nBrew Type\nEspresso\nAmericano\nPour Over\nFrench Press\nAeroPress\nCold Brew\nMoka Pot\nFilter\nBrewing\nBEAN WEIGHT\ng\nSHOT WEIGHT\ng\nTIME\ns\nGRIND SIZE\nGRINDER\nTasting\nFLAVOR NOTES\nTASTE NOTES\nRATING\n8.0/10\nClear\n0\n5\n10\nNOTES\nUpdate Entry",
+      "inputs": [
+        {
+          "tag": "input",
+          "visible": false,
+          "type": "file",
+          "name": "",
+          "id": "",
+          "placeholder": "",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "coffeeName",
+          "id": "base-ui-_R_4ov5fiv5ubrb_",
+          "placeholder": "e.g., Bili hu, Naivo, Half Light",
+          "aria-label": "",
+          "required": true
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "",
+          "id": "base-ui-_R_d8v5fiv5ubrb_-hidden-input",
+          "placeholder": "",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "",
+          "id": "base-ui-_R_dov5fiv5ubrb_-hidden-input",
+          "placeholder": "",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "number",
+          "name": "coffeeWeight",
+          "id": "base-ui-_R_opn5fiv5ubrb_",
+          "placeholder": "16",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "number",
+          "name": "shotWeight",
+          "id": "base-ui-_R_p9n5fiv5ubrb_",
+          "placeholder": "36",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "number",
+          "name": "brewTime",
+          "id": "base-ui-_R_ppn5fiv5ubrb_",
+          "placeholder": "25",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "grindSize",
+          "id": "base-ui-_R_a9n5fiv5ubrb_",
+          "placeholder": "4-5",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "grinderType",
+          "id": "base-ui-_R_1dn5fiv5ubrb_",
+          "placeholder": "e.g., Niche Zero, Baratza Encore",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "input",
+          "name": "flavorNotes",
+          "id": "base-ui-_R_8pv5fiv5ubrb_",
+          "placeholder": "e.g., peanut butter, chocolate, citrus",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "textarea",
+          "visible": true,
+          "type": "textarea",
+          "name": "tasteNotes",
+          "id": "",
+          "placeholder": "How did this brew taste?",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "input",
+          "visible": true,
+          "type": "range",
+          "name": "",
+          "id": "base-ui-_R_2ppv5fiv5ubrbH2_",
+          "placeholder": "",
+          "aria-label": "",
+          "required": false
+        },
+        {
+          "tag": "textarea",
+          "visible": true,
+          "type": "textarea",
+          "name": "notes",
+          "id": "",
+          "placeholder": "Your thoughts on this coffee...",
+          "aria-label": "",
+          "required": false
+        }
+      ],
+      "buttons": [
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "",
+          "aria": "",
+          "type": ""
+        },
+        {
+          "text": "Add Photo",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Select roastery",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Select estate",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Light",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Medium",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Medium Dark",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Dark",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Espresso",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Americano",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Pour Over",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "French Press",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "AeroPress",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Cold Brew",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Moka Pot",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Filter",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Clear",
+          "aria": "",
+          "type": "button"
+        },
+        {
+          "text": "Update Entry",
+          "aria": "",
+          "type": "submit"
+        }
+      ]
+    }
+  },
+  "all_requests": [
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/062mve.jq8w.h.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0wudi~~2r4dnj.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0.p.aws2133b9.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0o8scq_~~ctp3.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0wparyv1j4c-w.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=y5v9q",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=uzc0i",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0.p.aws2133b9.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0o8scq_~~ctp3.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0wparyv1j4c-w.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=y5v9q",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=uzc0i",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "POST",
+      "url": "http://localhost:3456/entry/new",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=kc3rh",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0-mts17k6b2_q.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705/edit?_rsc=t7174",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=t7174",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705/edit?_rsc=1oy9j",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=1oy9j",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/roasteries",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/02fq~wncd5~45.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0sahg_zydolq-.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=izhl8",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=1k229",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/estates",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0sahg_zydolq-.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0.~uae5~iieew.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=1y8sj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=1qckb",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0wudi~~2r4dnj.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0-mts17k6b2_q.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705/edit?_rsc=t7174",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=t7174",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705/edit?_rsc=1oy9j",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=1oy9j",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705/edit",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0.p.aws2133b9.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0o8scq_~~ctp3.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0wparyv1j4c-w.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=18pwn",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=18pwn",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=1oy65",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=1oy65",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0wudi~~2r4dnj.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?profile=vidit",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0wudi~~2r4dnj.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?roast=medium",
+      "status": 200,
+      "resource_type": "document"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/03fc1b4a8d284b5e-s.p.09.f.n_ccld80.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/0f9b0aa50a4f67ad-s.p.008tlg5wm2dbr.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/2ccb882a09be6e9a-s.p.0zgfhbqr56qr_.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/media/3de5843039fd6032-s.p.0-cf27c~55kdg.woff2",
+      "status": 200,
+      "resource_type": "font"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0tqg6o5ez9-re.css",
+      "status": 200,
+      "resource_type": "stylesheet"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0b.co5pz4vjto.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0_lnm3rqn3zjy.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/009vv2w2mv~-m.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/05sqcqboyzs63.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/turbopack-0dac3010nmcym.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/16hg4zt_8pyso.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/00er-tt39z9kx.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/_next/static/chunks/0wudi~~2r4dnj.js",
+      "status": 200,
+      "resource_type": "script"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=3hbdg",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/entry/new?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    },
+    {
+      "method": "GET",
+      "url": "http://localhost:3456/feed?_rsc=dt5zj",
+      "status": 200,
+      "resource_type": "fetch"
+    }
+  ],
+  "console_messages": [],
+  "unique_endpoints": {
+    "GET http://localhost:3456/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0?_rsc=3hbdg": 200,
+    "GET http://localhost:3456/entry/new?_rsc=3hbdg": 200,
+    "GET http://localhost:3456/feed?_rsc=dt5zj": 200,
+    "GET http://localhost:3456/entry/d8a44919-4c8a-4b2d-aea1-197f583158d0?_rsc=dt5zj": 200,
+    "GET http://localhost:3456/entry/new?_rsc=dt5zj": 200,
+    "GET http://localhost:3456/feed?_rsc=y5v9q": 200,
+    "GET http://localhost:3456/feed?_rsc=uzc0i": 200,
+    "POST http://localhost:3456/entry/new": 200,
+    "GET http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=kc3rh": 200,
+    "GET http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705/edit?_rsc=t7174": 200,
+    "GET http://localhost:3456/feed?_rsc=t7174": 200,
+    "GET http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705/edit?_rsc=1oy9j": 200,
+    "GET http://localhost:3456/feed?_rsc=1oy9j": 200,
+    "GET http://localhost:3456/feed?_rsc=izhl8": 200,
+    "GET http://localhost:3456/feed?_rsc=1k229": 200,
+    "GET http://localhost:3456/feed?_rsc=1y8sj": 200,
+    "GET http://localhost:3456/feed?_rsc=1qckb": 200,
+    "GET http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=3hbdg": 200,
+    "GET http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=dt5zj": 200,
+    "GET http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=18pwn": 200,
+    "GET http://localhost:3456/feed?_rsc=18pwn": 200,
+    "GET http://localhost:3456/feed?_rsc=1oy65": 200,
+    "GET http://localhost:3456/entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705?_rsc=1oy65": 200,
+    "GET http://localhost:3456/feed?_rsc=3hbdg": 200
+  },
+  "non_rsc_endpoints": {
+    "GET /": 200,
+    "GET /feed": 200,
+    "GET /entry/new": 200,
+    "POST /entry/new": 200,
+    "GET /roasteries": 200,
+    "GET /estates": 200,
+    "GET /entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705": 200,
+    "GET /entry/0121e0ad-b9dc-4771-bbb4-ec87726a0705/edit": 200,
+    "GET /feed?profile=vidit": 200,
+    "GET /feed?roast=medium": 200
+  }
+}

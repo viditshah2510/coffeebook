@@ -1,0 +1,26 @@
+# Scout Progress
+
+- [x] / (landing + password gate)
+- [x] / (profile selection)
+- [x] /feed (main feed page)
+- [x] /feed header (hamburger menu — Roasteries + Estates links)
+- [x] /feed filter buttons (profile + roast)
+- [x] /feed?profile=vidit (profile filter)
+- [x] /feed?profile=karan (profile filter — empty)
+- [x] /feed?roast=medium (roast filter — empty)
+- [x] /entry/new (new entry form — all fields documented)
+- [x] /entry/new (form fill + submit — success)
+- [x] /entry/[id] (entry detail — Scout Espresso Blend)
+- [x] /entry/[id] (entry detail — Bili hu)
+- [x] /entry/[id]/edit (edit form — all fields documented)
+- [x] /roasteries (list page + Add dialog)
+- [x] /estates (list page + Add dialog)
+- [x] Logout flow (clears auth, → /)
+- [x] Network monitoring (230 requests captured, 0 errors)
+- [x] Console error capture (0 errors on local, 9 errors on production 500)
+- [x] Production health check (500 on all routes except /)
+- [x] app-map.md written
+- [x] api-calls.md written
+- [x] console-errors.md written
+- [x] interactive-elements.md written
+- [x] scout-browser.md written (full report)
