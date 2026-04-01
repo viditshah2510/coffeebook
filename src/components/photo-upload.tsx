@@ -10,16 +10,31 @@ interface PhotoUploadProps {
   onPhotosAdded?: (urls: string[]) => void;
 }
 
-async function uploadFile(file: File): Promise<string> {
-  const formData = new FormData();
-  formData.set("file", file);
-  const res = await fetch("/api/upload", { method: "POST", body: formData });
-  if (!res.ok) {
-    const body = await res.text().catch(() => "");
-    throw new Error(`Upload failed (${res.status}): ${body}`);
-  }
-  const { url } = await res.json();
-  return url;
+const UPLOAD_TIMEOUT_MS = 60_000;
+
+function uploadFile(file: File): Promise<string> {
+  // Use XMLHttpRequest instead of fetch — iOS Safari's fetch() silently hangs
+  // when sending large FormData with File objects from the camera/photo picker.
+  return new Promise((resolve, reject) => {
+    const xhr = new XMLHttpRequest();
+    xhr.open("POST", "/api/upload");
+    xhr.timeout = UPLOAD_TIMEOUT_MS;
+    xhr.responseType = "json";
+
+    xhr.onload = () => {
+      if (xhr.status >= 200 && xhr.status < 300 && xhr.response?.url) {
+        resolve(xhr.response.url);
+      } else {
+        reject(new Error(`Upload failed (${xhr.status})`));
+      }
+    };
+    xhr.onerror = () => reject(new Error("Network error — check your connection"));
+    xhr.ontimeout = () => reject(new Error("Upload timed out — photo may be too large"));
+
+    const formData = new FormData();
+    formData.set("file", file);
+    xhr.send(formData);
+  });
 }
 
 export function PhotoUpload({
