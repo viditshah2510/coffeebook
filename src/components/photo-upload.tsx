@@ -1,20 +1,12 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { ImagePlus, X, Loader2 } from "lucide-react";
 import { toast } from "sonner";
-
-interface PhotoUploadProps {
-  photos: string[];
-  onChange: (updater: string[] | ((prev: string[]) => string[])) => void;
-  onPhotosAdded?: (urls: string[]) => void;
-}
 
 const UPLOAD_TIMEOUT_MS = 60_000;
 
 function uploadFile(file: File): Promise<string> {
-  // Use XMLHttpRequest instead of fetch — iOS Safari's fetch() silently hangs
-  // when sending large FormData with File objects from the camera/photo picker.
   return new Promise((resolve, reject) => {
     const xhr = new XMLHttpRequest();
     xhr.open("POST", "/api/upload");
@@ -37,27 +29,28 @@ function uploadFile(file: File): Promise<string> {
   });
 }
 
-export function PhotoUpload({
-  photos,
-  onChange,
-  onPhotosAdded,
-}: PhotoUploadProps) {
+interface PhotoUploadProps {
+  photos: string[];
+  onChange: (updater: string[] | ((prev: string[]) => string[])) => void;
+  onPhotosAdded?: (urls: string[]) => void;
+}
+
+export function PhotoUpload({ photos, onChange, onPhotosAdded }: PhotoUploadProps) {
   const [uploading, setUploading] = useState(false);
-  // Increment key after each use to force a fresh <input> — avoids iOS Safari
-  // bug where the change event doesn't re-fire on the same input element.
-  const [inputKey, setInputKey] = useState(0);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const processingRef = useRef(false);
+  const callbacksRef = useRef({ onChange, onPhotosAdded });
+  callbacksRef.current = { onChange, onPhotosAdded };
 
-  async function handleFiles(e: React.ChangeEvent<HTMLInputElement>) {
-    const files = e.target.files;
-    if (!files?.length) return;
-
-    // Copy file references immediately — iOS may invalidate the FileList
-    const fileArray = Array.from(files);
-
+  const doUpload = useCallback(async (files: File[]) => {
+    if (processingRef.current || !files.length) return;
+    processingRef.current = true;
     setUploading(true);
+
     const newUrls: string[] = [];
     try {
-      for (const file of fileArray) {
+      for (const file of files) {
+        if (file.size === 0) continue;
         const url = await uploadFile(file);
         newUrls.push(url);
       }
@@ -65,13 +58,37 @@ export function PhotoUpload({
       console.error("Upload error:", err);
       toast.error(err instanceof Error ? err.message : "Photo upload failed");
     }
+
     if (newUrls.length > 0) {
-      onChange((prev) => [...prev, ...newUrls]);
-      if (onPhotosAdded) onPhotosAdded(newUrls);
+      callbacksRef.current.onChange((prev) => [...prev, ...newUrls]);
+      callbacksRef.current.onPhotosAdded?.(newUrls);
     }
+
     setUploading(false);
-    // Remount the input so iOS Safari fires change again on next use
-    setInputKey((k) => k + 1);
+    processingRef.current = false;
+    if (inputRef.current) inputRef.current.value = "";
+  }, []);
+
+  // Fallback for iOS Safari camera flow: when the camera UI is active the page
+  // goes to background. On some iOS versions the `change` event doesn't fire
+  // when the page returns. Catch those by checking for pending files on
+  // visibilitychange.
+  useEffect(() => {
+    function onVisible() {
+      if (document.visibilityState !== "visible") return;
+      const input = inputRef.current;
+      if (input?.files?.length && !processingRef.current) {
+        doUpload(Array.from(input.files));
+      }
+    }
+    document.addEventListener("visibilitychange", onVisible);
+    return () => document.removeEventListener("visibilitychange", onVisible);
+  }, [doUpload]);
+
+  function handleInputChange(e: React.ChangeEvent<HTMLInputElement>) {
+    const files = e.target.files;
+    if (!files?.length) return;
+    doUpload(Array.from(files));
   }
 
   function removePhoto(index: number) {
@@ -105,9 +122,7 @@ export function PhotoUpload({
         </div>
       )}
 
-      {/* Single button — iOS natively offers "Take Photo" or "Choose from Library"
-          when accept="image/*" without capture attribute. The separate capture button
-          caused iOS Safari to silently drop the change event on many versions. */}
+      {/* iOS natively offers "Take Photo" or "Choose from Library" */}
       <label
         className={`btn-craft relative flex cursor-pointer items-center justify-center gap-2 overflow-hidden rounded-full border border-coffee-espresso bg-white px-4 py-3 text-sm font-medium text-coffee-espresso ${uploading ? "pointer-events-none opacity-50" : ""}`}
       >
@@ -118,13 +133,13 @@ export function PhotoUpload({
         )}
         {uploading ? "Uploading..." : "Add Photo"}
         <input
-          key={inputKey}
+          ref={inputRef}
           type="file"
           accept="image/*"
           multiple
           className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
           style={{ fontSize: 0 }}
-          onChange={handleFiles}
+          onChange={handleInputChange}
         />
       </label>
     </div>
