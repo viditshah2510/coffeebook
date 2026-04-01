@@ -17,13 +17,13 @@ function isHeic(buffer: Buffer): boolean {
   return HEIC_FTYPES.some((sig) => ftype.startsWith(sig));
 }
 
-async function convertHeicToJpeg(buffer: Buffer): Promise<Buffer> {
+async function convertHeicToJpeg(buffer: Buffer): Promise<Buffer<ArrayBuffer>> {
   const converted = await heicConvert({
     buffer: new Uint8Array(buffer),
     format: "JPEG",
     quality: 0.92,
   });
-  return Buffer.from(converted);
+  return Buffer.from(converted) as Buffer<ArrayBuffer>;
 }
 
 async function processImage(buffer: Buffer): Promise<Buffer> {
