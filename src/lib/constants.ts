@@ -2,6 +2,7 @@ export const PROFILES = [
   { id: "karan", name: "Karan", initials: "K", color: "#d4a12a" },
   { id: "vidit", name: "Vidit", initials: "V", color: "#0e4444" },
   { id: "amar", name: "Amar", initials: "A", color: "#76553c" },
+  { id: "shreyas", name: "Shreyas", initials: "S", color: "#8b3a2e" },
 ] as const;
 
 export const ROAST_LEVELS = [
