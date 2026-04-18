@@ -1,7 +1,7 @@
 {
   "name": "Coffeebook",
   "short_name": "Coffeebook",
-  "description": "Coffee tasting notes by Karan, Vidit & Amar",
+  "description": "Coffee tasting notes by Karan, Vidit, Amar & Shreyas",
   "start_url": "/",
   "display": "standalone",
   "background_color": "#fff8f2",

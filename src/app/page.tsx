@@ -19,7 +19,7 @@ export default function HomePage() {
 
       {/* Footer */}
       <p className="mt-12 text-xs text-coffee-brown/50">
-        By Karan, Vidit & Amar
+        By Karan, Vidit, Amar & Shreyas
       </p>
     </main>
   );

@@ -19,7 +19,7 @@ const ibmPlex = IBM_Plex_Sans({
 
 export const metadata: Metadata = {
   title: "Coffeebook",
-  description: "Coffee tasting notes by Karan, Vidit & Amar",
+  description: "Coffee tasting notes by Karan, Vidit, Amar & Shreyas",
   manifest: "/manifest.json",
   appleWebApp: {
     capable: true,
