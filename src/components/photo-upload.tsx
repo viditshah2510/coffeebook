@@ -135,7 +135,7 @@ export function PhotoUpload({ photos, onChange, onPhotosAdded }: PhotoUploadProp
         <input
           ref={inputRef}
           type="file"
-          accept="image/jpeg,image/png,image/webp"
+          accept="image/*,.heic,.heif"
           multiple
           className="absolute inset-0 h-full w-full cursor-pointer opacity-0"
           style={{ fontSize: 0 }}
