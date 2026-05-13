@@ -43,3 +43,13 @@ next-env.d.ts
 # local sqlite
 /data/*.db
 /data/*.db-*
+
+# test/scout artifacts
+/.testing/
+/playwright/
+/playwright-report/
+/test-results/
+
+# Archon
+.archon/state/
+.archon/.env

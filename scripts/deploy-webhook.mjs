@@ -5,12 +5,13 @@
 
 import http from "node:http";
 import crypto from "node:crypto";
-import { exec } from "node:child_process";
+import { execFile } from "node:child_process";
 import { resolve } from "node:path";
 
 const PORT = 9876;
 const SECRET = process.env.DEPLOY_WEBHOOK_SECRET || "";
 const PROJECT_DIR = resolve(import.meta.dirname, "..");
+const DEPLOY_SCRIPT = resolve(PROJECT_DIR, "scripts/deploy.sh");
 
 let deploying = false;
 
@@ -25,8 +26,9 @@ function deploy() {
   deploying = true;
   console.log(`[${new Date().toISOString()}] Deploying...`);
 
-  exec(
-    "git pull origin main && docker compose down && docker compose up -d --build",
+  execFile(
+    DEPLOY_SCRIPT,
+    [],
     { cwd: PROJECT_DIR, timeout: 600000 },
     (err, stdout, stderr) => {
       deploying = false;

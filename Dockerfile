@@ -4,7 +4,7 @@ FROM node:20-alpine AS base
 FROM base AS deps
 WORKDIR /app
 COPY package.json bun.lock ./
-RUN npm install --frozen-lockfile || npm install
+RUN npm install
 
 # Build the app
 FROM base AS builder
@@ -32,5 +32,8 @@ RUN chmod +x docker-entrypoint.sh
 # Create data directories
 RUN mkdir -p data/uploads
 EXPOSE 3456
+
+HEALTHCHECK --interval=30s --timeout=5s --start-period=20s --retries=3 \
+  CMD node -e "require('http').get('http://localhost:3456/api/health',r=>process.exit(r.statusCode===200?0:1)).on('error',()=>process.exit(1))"
 
 CMD ["./docker-entrypoint.sh"]
