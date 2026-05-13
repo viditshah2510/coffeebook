@@ -17,6 +17,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { DeleteEntryButton } from "@/components/delete-entry-button";
+import { SafePhoto } from "@/components/safe-photo";
 
 interface EntryDetailPageProps {
   params: Promise<{ id: string }>;
@@ -68,8 +69,7 @@ export default async function EntryDetailPage({ params }: EntryDetailPageProps) 
                 key={photo.id}
                 className="relative aspect-[4/3] w-full overflow-hidden rounded-xl bg-coffee-light-cream"
               >
-                {/* eslint-disable-next-line @next/next/no-img-element */}
-                <img
+                <SafePhoto
                   src={photo.blobUrl}
                   alt={`${entry.coffeeName} photo ${i + 1}`}
                   className="absolute inset-0 h-full w-full object-cover"

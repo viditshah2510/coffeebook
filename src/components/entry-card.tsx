@@ -2,6 +2,7 @@ import type { CoffeeEntry, EntryPhoto, Profile, Roastery, Estate } from "@/lib/d
 import { ROAST_LEVELS, BREW_TYPES, PROCESS_METHODS } from "@/lib/constants";
 import { formatDistanceToNow } from "date-fns";
 import Link from "next/link";
+import { SafePhoto } from "@/components/safe-photo";
 
 type EntryWithRelations = CoffeeEntry & {
   profile: Profile;
@@ -52,8 +53,7 @@ export function EntryCard({ entry }: { entry: EntryWithRelations }) {
         {/* Photo */}
         {entry.photos.length > 0 && (
           <div className="relative mb-3 aspect-[4/3] w-full overflow-hidden rounded-lg bg-coffee-light-cream">
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
+            <SafePhoto
               src={entry.photos[0].blobUrl}
               alt={entry.coffeeName}
               className="absolute inset-0 h-full w-full object-cover"
